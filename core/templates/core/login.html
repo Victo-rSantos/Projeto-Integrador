@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<div class="content-box">
+    <h3 class="text-center mb-4">Área de Login</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-green">Entrar</button>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">Voltar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

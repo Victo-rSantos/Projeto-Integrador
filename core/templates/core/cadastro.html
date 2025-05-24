@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block title %}Cadastro{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-10 d-flex">
+        <div class="col-md-6 pe-5">
+            <h2>Educação que abre caminhos</h2>
+            <p>
+                Este site foi criado para apoiar quem está dando um passo importante: retomar os estudos e buscar novas oportunidades.
+                Seja para terminar a escola, fazer um concurso ou realizar um sonho, aqui você encontra apoio, reforço e motivação.
+            </p>
+            <p class="highlight">Porque aprender transforma. E o primeiro passo começa aqui.</p>
+        </div>
+
+        <div class="col-md-6">
+            <div class="content-box">
+                <h4 class="mb-4 text-center">Área de Cadastro</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-green">Cadastrar</button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Sala de Aula{% endblock %}
+
+{% block content %}
+<div class="content-box">
+    <h2>Sala de Aula</h2>
+    
+    <div class="comment-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Comentar</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="comment-section">
+        <h3>Comentários</h3>
+        {% for comentario in comentarios %}
+            <div class="comment-card">
+                <strong>{{ comentario.nome_exibido }}</strong> <br>
+                <p>{{ comentario.texto }}</p>
+                <small>{{ comentario.criado_em|date:"d/m/Y H:i" }}</small>
+
+                {% if is_professor %}
+                    <form action="{% url 'deletar_comentario' comentario.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn" onclick="return confirm('Deseja realmente deletar este comentário?')">🗑</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Não há comentários ainda. Seja o primeiro a participar!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
